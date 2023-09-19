@@ -11,21 +11,11 @@ enabling you to play the timeless game of Rock, Paper, Scissors. You will also h
 a new feature to the contract, which will allow a single player to play a match against a computer opponent, which plays at random!
 
 ## Your Workshop Hosts
-TODO fix alignment
 ![Alex-profile-small](https://user-images.githubusercontent.com/98821241/268605584-1beb6305-91bc-4e16-9224-e5bf96387106.png)
+Alex Zaidelson: Scrt Labs CEO. (TODO fun fact?)
 
-<body>
-    <div class="container">
-        <img src="https://user-images.githubusercontent.com/98821241/268605584-1beb6305-91bc-4e16-9224-e5bf96387106.png" alt="Your Image" class="image">
-        <p>Your text goes here and will be vertically centered.</p>
-    </div>
-</body>
-</html>
-
-![circle-profile-smallest-est-est](https://user-images.githubusercontent.com/98821241/268605642-122e8106-acfa-4a0e-a7de-e7f71a3338b4.png)
-<p align="center">
-  Eshel Bar Meir: Scrt Labs Developer. (TODO fun fact?)
-</p>
+![Eshel-profile-small](https://user-images.githubusercontent.com/98821241/268605642-122e8106-acfa-4a0e-a7de-e7f71a3338b4.png)
+Eshel Bar Meir: Scrt Labs Developer. (TODO fun fact?)
 
 Don't hesitate to ask questions and seek further explanations from our workshop hosts.
 They're here to help you understand the material.
@@ -35,15 +25,17 @@ We've prepared a [Gitpod environment](https://gitpod.io/new/#https://github.com/
 components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game. For those preferring to
 work locally, the repository of the project is available [here](https://github.com/scrtlabs/rps/).
 
-In the Gitpod menu, choose the editor you'd like to use for contract editing. We recommend selecting a **jetbrains-client**
-such as Goland, as it includes a built-in **port forwarding** feature, which will prove useful for reaching the web server later.
+In the Gitpod menu, choose the editor you'd like to use for contract editing.
+> :warning: Please select a **Desktop** Editor, Such as Jetbrains or VS Code Desktop, so that you'll have port forwarding and will be able
+> to reach the front-end interface.
 
 When you open your environment, you'll find three tabs: </br>
-![tabs](https://user-images.githubusercontent.com/98821241/267066179-1a5c7a11-b10d-4b5e-bdbd-09353a662ab1.png)
+![tabs](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/4093f520-433c-4f16-a8ab-0f80ef77dc42)
 
-1. **Node**: This tabs represents the local node, which operates as the sole participant in our network. It generates new, empty blocks every 6 seconds.
+1. **Faucet**: a service that provides free coins upon request. It can be used to fund new accounts as needed.
 2. **Terminal**: In the second tab, you'll have access to an open terminal.
-3. **Faucet**: a service that provides free coins upon request. It can be used to fund new accounts as needed.
+3. **Local Secret Node**, which operates as the sole participant in our network. It generates new, empty blocks every 6 seconds.
+4. You can always open more terminals if you wish.
 
 ## Compile The Contract
 Before we try to understand the contract, let's save a bit of time by converting it to something we can upload to our local Secret Network - a .wasm file. Run the following in the Terminal tab:
@@ -53,8 +45,15 @@ make build
 ```
 
 ## Contract's Function
-Let's review how the contract operates. It accepts three types of messages: 'New Game,' 'Join Game,' and 'Submit Choice,' where choices can be `rock`, `paper`, or `scissors`. With each message, it updates the internal game status for the specified game. After the game concludes, you can query for the winner
+Let's review how the contract operates. It accepts three types of messages: 'New Game,' 'Join Game,' and 'Submit Choice,' where choices can be `rock`, `paper`, or `scissors`. With each message, it updates the internal game status for the specified game. After the game concludes, you can query for the winner.
 ![image](https://user-images.githubusercontent.com/98821241/267093633-056c269d-cf1f-4ec3-bcd6-33a528997966.png)
+
+### Privacy
+This contract function relies on Secret Network's privacy features, which enable and ensure fair gameplay. Messages sent to the contract, in particular the choice of 
+Rock, Paper, or Scissors by the player must remain confidential both as the input to the contract, and as the state saved by the contract. If these messages
+where public, as is the case with other Smart Contract Networks, the player who played first would expose their choice to their opponent, who can beat him every time. 
+Note that the contract does not concern itself with the encrytion of the choice saved to storage, nor the decryption of the input. Secret Network takes care of that 
+behind the scenes, allowing only encrypted messages to be received by the node.
 
 ## Upload the Contract
 There are two steps for uploading the .wasm file we got in the compilation step.
