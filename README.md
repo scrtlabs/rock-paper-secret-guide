@@ -49,9 +49,9 @@ Let's review how the contract operates. It accepts three types of messages: 'New
 ### Privacy
 This contract function relies on Secret Network's privacy features, which enable and ensure fair gameplay. Messages sent to the contract, in particular the choice of 
 Rock, Paper, or Scissors by the player must remain confidential both as the input to the contract, and as the state saved by the contract. If these messages
-where public, as is the case with other Smart Contract Networks, the player who played first would expose their choice to their opponent, who can win the bet every 
+were public, as is the case with other Smart Contract Networks, the player who played first would expose their choice to their opponent, who can win the bet every 
 time.</br> 
-Note that the contract does not concern itself with the encrytion of the choice saved to storage, nor the decryption of the input. Secret Network takes care of that 
+Note that the contract does not concern itself with the encryption of the choice saved to storage, nor the decryption of the input. Secret Network takes care of that 
 behind the scenes, allowing only encrypted messages to be received by the node.
 
 Moreover, nodes that process transactions on Secret Network are not exposed to the data they are operating on, because Secret Network requires them to execute the
