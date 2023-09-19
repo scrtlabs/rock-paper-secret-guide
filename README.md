@@ -51,9 +51,13 @@ Let's review how the contract operates. It accepts three types of messages: 'New
 ### Privacy
 This contract function relies on Secret Network's privacy features, which enable and ensure fair gameplay. Messages sent to the contract, in particular the choice of 
 Rock, Paper, or Scissors by the player must remain confidential both as the input to the contract, and as the state saved by the contract. If these messages
-where public, as is the case with other Smart Contract Networks, the player who played first would expose their choice to their opponent, who can beat him every time. 
+where public, as is the case with other Smart Contract Networks, the player who played first would expose their choice to their opponent, who can win the bet every 
+time.</br> 
 Note that the contract does not concern itself with the encrytion of the choice saved to storage, nor the decryption of the input. Secret Network takes care of that 
 behind the scenes, allowing only encrypted messages to be received by the node.
+
+Moreover, nodes that process transactions on Secret Network are not exposed to the data they are operating on, because Secret Network requires them to execute the
+messages inside a secure enclave (more about [Trusted Execution Environments and Intel SGX](https://docs.scrt.network/secret-network-documentation/overview-ecosystem-and-technology/techstack/privacy-technology/intel-sgx)).
 
 ## Upload the Contract
 There are two steps for uploading the .wasm file we got in the compilation step.
@@ -78,7 +82,7 @@ There are two steps for uploading the .wasm file we got in the compilation step.
 2.  Instantiate the contract.
     This step causes the code to be instantiated and receive an address. This way, if we have two contracts with the same code, we only need to store the code once, and instantiate it twice.
     ```bash
-    make cli-instantiate-contract
+    make cli-instantiate
     # check if we instantiated the contract successfully
     secretcli query compute list-contract-by-code 1
     ```
@@ -96,23 +100,31 @@ There are two steps for uploading the .wasm file we got in the compilation step.
     
 
 ## Interact with the Contract
-Run the webserver that serves as the front-end interface for the contract:
+Now that we have deployed and instantiated the contract, we can interact with it.
+
+Build and run the webserver that serves as the front-end interface for the contract:
 ```bash
 cd ui
 npm install  # install dependencies
 npm run dev  # run the webserver
 ```
-Now we have a webserver running on the environment on port 3000. If Gitpod's port forwarding is working correctly, you should now be able to access [localhost:3000](http://localhost:3000) on your browser. Alternatively, you can reach the front-end by issuing `gp info`, and prepending `3000-` to the `Workspace URL` that is shown there (after `https://`).
+We now have a webserver running on the environment on port 3000. If Gitpod's port forwarding is working correctly, you should now be able to access [localhost:3000](http://localhost:3000) on your browser.
 
-Then, on your browser, connect your wallet, and allow Keplr's request to connect to secretdev-1, which is the local node's `chain-id`.
+Then, on your browser, connect your Keplr wallet (install from [here](https://www.keplr.app/download) if you haven't yet).
+Next, allow Keplr's request to connect to secretdev-1, which is the local node's `chain-id`.
 
 ### Receiving coins from the Faucet
-You will want to fund your account by a small amount, so you will be able to bet, and to pay the fees associated with the game transactions. Copy the address provided at the top of the screen, and then use it in the following command:
+You will want to fund your account by a small amount, so you will be able to bet, and to pay the fees associated with the game transactions.
+
+Copy the address provided at the top of the screen (or from Keplr wallet),
+![image](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/12f577f1-fdc1-45cc-a470-f96207e46523)
+
+and then use it in the following command in the terminal:
 ```bash
 curl http://localhost:5000/faucet?address=<your_address>
 ```
 
-Now you can play the game with your friends!
+Now you can play the game with your friends! ✊✋✌️
 
 ## Bonus: Implement the "Vs Computer" part
 At the bottom of the screen, there is also the interface to play against the computer, which currently won't work.
@@ -127,7 +139,7 @@ We now challenge you to extend the contract to support this feature! You will ha
 > ```
 > let new_evt = Event::new("new_rps_vs_computer_game".to_string())
 >     .add_attribute_plaintext("computer_choice", computer_choice.to_str())  # you'll have to populate 'computer_choice'
->     .add_attribute_plaintext("result", winner);                            # you'll have to pupulate 'winner'
+>     .add_attribute_plaintext("result", winner);                            # you'll have to populate 'winner'
 > 
 > Ok(resp.add_events(vec![new_evt]))
 > ```
