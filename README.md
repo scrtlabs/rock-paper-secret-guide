@@ -31,13 +31,14 @@ Don't hesitate to ask questions and seek further explanations from our workshop 
 They're here to help you understand the material.
 
 ## Open Your Environment
-We've prepared a [Gitpod environment](https://gitpod.io/new/#https://github.com/scrtlabs/rps/tree/rps-course) that includes all the necessary
-components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game.
+We've prepared a [Gitpod environment](https://gitpod.io/new/#https://github.com/scrtlabs/rps/) that includes all the necessary
+components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game. For those preferring to
+work locally, the repository of the project is available [here](https://github.com/scrtlabs/rps/).
 
 In the Gitpod menu, choose the editor you'd like to use for contract editing. We recommend selecting a **jetbrains-client**
 such as Goland, as it includes a built-in **port forwarding** feature, which will prove useful for reaching the web server later.
 
-When you open your environment, you'll find three tabs:
+When you open your environment, you'll find three tabs: </br>
 ![tabs](https://user-images.githubusercontent.com/98821241/267066179-1a5c7a11-b10d-4b5e-bdbd-09353a662ab1.png)
 
 1. **Node**: This tabs represents the local node, which operates as the sole participant in our network. It generates new, empty blocks every 6 seconds.
