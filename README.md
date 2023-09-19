@@ -25,9 +25,7 @@ We've prepared a [Gitpod environment](https://gitpod.io/new/#https://github.com/
 components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game. For those preferring to
 work locally, the repository of the project is available [here](https://github.com/scrtlabs/rps/).
 
-In the Gitpod menu, choose the editor you'd like to use for contract editing.
-> :warning: Please select a **Desktop** Editor, Such as Jetbrains or VS Code Desktop, so that you'll have port forwarding and will be able
-> to reach the front-end interface.
+In the Gitpod menu, choose the editor you'd like to use for contract reading.
 
 When you open your environment, you'll find three tabs: </br>
 ![tabs](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/4093f520-433c-4f16-a8ab-0f80ef77dc42)
@@ -108,7 +106,7 @@ cd ui
 npm install  # install dependencies
 npm run dev  # run the webserver
 ```
-We now have a webserver running on the environment on port 3000. If Gitpod's port forwarding is working correctly, you should now be able to access [localhost:3000](http://localhost:3000) on your browser.
+We now have a webserver running on the environment on port 3000. You should now be able to access the url given by the command `gp url 3000` on your browser.
 
 Then, on your browser, connect your Keplr wallet (install from [here](https://www.keplr.app/download) if you haven't yet).
 Next, allow Keplr's request to connect to secretdev-1, which is the local node's `chain-id`.
