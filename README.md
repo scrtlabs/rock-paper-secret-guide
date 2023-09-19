@@ -22,13 +22,18 @@ They're here to help you understand the material.
 
 ## Open Your Environment
 We've prepared a [Gitpod environment](https://gitpod.io/new/#https://github.com/scrtlabs/rps/) that includes all the necessary
-components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game. For those preferring to
+components, allowing you to focus exclusively on deploying the contracts and setting up the web server for the game.
+You will need your GitHub account to use GitPod. For those preferring to
 work locally, the repository of the project is available [here](https://github.com/scrtlabs/rps/).
 
 In the Gitpod menu, choose the editor you'd like to use for contract reading.
 
 When you open your environment, you'll find three tabs: </br>
+**Jetbrains**:</br>
 ![tabs](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/4093f520-433c-4f16-a8ab-0f80ef77dc42)
+</br>
+**VS Code**:</br>
+![image](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/b442f81d-6e20-466b-8d8e-b89d2b908c49)
 
 1. **Faucet**: a service that provides free coins upon request. It can be used to fund new accounts as needed.
 2. **Terminal**: In the second tab, you'll have access to an open terminal.
@@ -36,7 +41,7 @@ When you open your environment, you'll find three tabs: </br>
 4. You can always open more terminals if you wish.
 
 ## Compile The Contract
-Before we try to understand the contract, let's save a bit of time by converting it to something we can upload to our local Secret Network - a .wasm file. Run the following in the Terminal tab:
+Before we try to understand the contract, let's save a bit of time by compiling it to something we can upload to our local Secret Network - a .wasm file. Run the following in the Terminal tab:
 ```bash
 make build
 # you can inspect the Makefile to see what it does
@@ -91,7 +96,7 @@ There are two steps for uploading the .wasm file we got in the compilation step.
             "contract_address": "secret1mfk7n6mc2cg6lznujmeckdh4x0a5ezf6hx6y8q",
             "code_id": 1,
             "creator": "secret1ap26qrlp8mcq2pg6r47w43l0y8zkqm8a450s03",
-            "label": "yo"
+            "label": "rps-game"
         }
     ]
     ```
@@ -106,7 +111,9 @@ cd ui
 npm install  # install dependencies
 npm run dev  # run the webserver
 ```
-We now have a webserver running on the environment on port 3000. You should now be able to access the url given by the command `gp url 3000` on your browser.
+We now have a webserver running on the environment on port 3000.
+
+On another terminal window, issue the `gp url 3000` command. Copy the URL returned by the gp command (that’s the external URL of our web server running on port 3000), and paste it into your browser.
 
 Then, on your browser, connect your Keplr wallet (install from [here](https://www.keplr.app/download) if you haven't yet).
 Next, allow Keplr's request to connect to secretdev-1, which is the local node's `chain-id`.
