@@ -12,10 +12,10 @@ a new feature to the contract, which will allow a single player to play a match 
 
 ## Your Workshop Hosts
 ![Alex-profile-small](https://user-images.githubusercontent.com/98821241/268605584-1beb6305-91bc-4e16-9224-e5bf96387106.png)
-Alex Zaidelson: Scrt Labs CEO. (TODO fun fact?)
+Alex Zaidelson: Scrt Labs CEO. Fun Fact: has three sons, all of them play ice hockey.
 
 ![Eshel-profile-small](https://user-images.githubusercontent.com/98821241/268605642-122e8106-acfa-4a0e-a7de-e7f71a3338b4.png)
-Eshel Bar Meir: Scrt Labs Developer. (TODO fun fact?)
+Eshel Bar Meir: Scrt Labs Developer. Fun Fact: Crazy about Underwater Hockey.
 
 Don't hesitate to ask questions and seek further explanations from our workshop hosts.
 They're here to help you understand the material.
@@ -57,18 +57,43 @@ behind the scenes, allowing only encrypted messages to be received by the node.
 
 ## Upload the Contract
 There are two steps for uploading the .wasm file we got in the compilation step.
-```bash
-make cli-store-contract
-# check if we stored the contract successfully
-secretcli query compute list-code
-```
-This step causes the code of the contract to exist in the state of the blockchain.
-```bash
-make cli-instantiate-contract
-# check if we instantiated the contract successfully
-secretcli query compute list-contract-by-code 1
-```
-This step causes the code to be instantiated and receive an address. This way, if we have two contracts with the same code, we only need to store the code once, and instantiate it twice.
+1. Store the contract on the Secret blockchain
+    ```bash
+    make cli-store-contract
+    # check if we stored the contract successfully
+    secretcli query compute list-code
+    ```
+    The output should look like this, showing that the contract was stored successfully:
+    ```json
+    [
+        {
+            "code_id": 1,
+            "creator": "secret1ap26qrlp8mcq2pg6r47w43l0y8zkqm8a450s03",
+            "code_hash": "008627e517b516b24f1b8f6020d98fc4659e68154242b4626c5a65ea570b8ea1"
+        }
+    ]
+    ```
+    This step causes the code of the contract to exist in the state of the blockchain.
+
+2.  Instantiate the contract.
+    This step causes the code to be instantiated and receive an address. This way, if we have two contracts with the same code, we only need to store the code once, and instantiate it twice.
+    ```bash
+    make cli-instantiate-contract
+    # check if we instantiated the contract successfully
+    secretcli query compute list-contract-by-code 1
+    ```
+    The output should look like this:
+    ```json
+    [
+        {
+            "contract_address": "secret1mfk7n6mc2cg6lznujmeckdh4x0a5ezf6hx6y8q",
+            "code_id": 1,
+            "creator": "secret1ap26qrlp8mcq2pg6r47w43l0y8zkqm8a450s03",
+            "label": "yo"
+        }
+    ]
+    ```
+    
 
 ## Interact with the Contract
 Run the webserver that serves as the front-end interface for the contract:
