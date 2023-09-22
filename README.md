@@ -30,11 +30,11 @@ In the Gitpod menu, choose the editor you'd like to use for contract reading.
 
 When you open your environment, you'll find three tabs: </br>
 **Jetbrains**:</br>
-![image](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/22caa839-c519-4a94-b4d1-150f4f04e674)
+![jetbrains](https://user-images.githubusercontent.com/98821241/269983734-78e16b74-4e4d-416e-b345-e92268783b65.png)
 </br>
 
 **VS Code**: </br>
-![image](https://github.com/scrtlabs/rock-paper-secret-guide/assets/98821241/7a7e3616-b7d6-4138-8972-92b2bb938605)
+![vscode](https://user-images.githubusercontent.com/98821241/269983821-763a11f2-304f-4fe2-9ae8-fa35e528e0bf.png)
 </br>
 
 1. **Faucet**: a service that provides free coins upon request. It can be used to fund new accounts as needed.
